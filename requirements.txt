@@ -1,10 +1,10 @@
-asgiref==3.3.4
+asgiref==3.2.10
 cffi==1.14.5
 cryptography==3.4.7
 dj-rest-auth==2.1.4
-Django==3.2.2
-djangorestframework==3.12.4
-djangorestframework-simplejwt==4.4.0
+Django==3.1
+djangorestframework==3.12
+djangorestframework-simplejwt==4.6.0
 drf-jwt==1.19.0
 pycparser==2.20
 PyJWT==2.1.0

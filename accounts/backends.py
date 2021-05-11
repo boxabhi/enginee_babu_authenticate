@@ -12,7 +12,14 @@ class EmailBackend(ModelBackend):
         username = email
         User = get_user_model()
         try:
-            user = User.objects.get(Q(username__iexact=username) | Q(email__iexact=username))
+            print(kwargs)
+            email = kwargs.get('username')
+
+
+            print(email)
+
+
+            user = User.objects.get(Q(email__iexact=email))
             print(password)
             login(request , user)
         except Exception as e:

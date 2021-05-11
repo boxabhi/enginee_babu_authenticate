@@ -5,7 +5,7 @@ from .views import *
 urlpatterns = [
  
     path('register/' , RegisterView),
-    path('login/' , EmailTokenObtainPairView),
+    path('login/' , Login),
 
     path('forget-password/' , Forget),
 

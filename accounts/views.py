@@ -1,5 +1,7 @@
 
+from django.contrib import auth
 from django.shortcuts import render, redirect
+from rest_framework import response
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.contrib.auth import authenticate,login,logout
@@ -56,6 +58,49 @@ class ResetPasswordRequestToken(GenericAPIView):
 Forget = ResetPasswordRequestToken.as_view() 
     
 
+from django.contrib.auth.hashers import check_password
+
+class Login(APIView):
+
+    def post(self , request):
+        response = {}
+        response['status'] = 500
+        response['message'] = 'Something went wrong'
+        try:
+            data = request.data
+            
+            email = data.get('email')
+            password = data.get('password')
+
+            if User.objects.filter(email = email).first() is None:
+                response['message'] = 'user not found'
+                return Response(response)
+
+            
+
+            user_obj = User.objects.get(email = email)       
+            password_check = check_password(password ,user_obj.password )
+
+            print(user_obj)
+            if user_obj is None:
+                response['message'] = 'invalid credentials'
+                return Response(response)
+
+            refresh = RefreshToken.for_user(user_obj)
+            response['refresh'] = str(refresh)
+            response['access'] =  str(refresh.access_token)
+            response['status'] = 200
+            response['message'] = 'Login Success'
+
+            return Response(response)
+              
+
+
+        except Exception as e:
+            print(e)
+
+
+Login  = Login.as_view()
 class ResetPasswordRequest(GenericAPIView):
     serializer_class = PasswordSerializer
     
