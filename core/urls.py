@@ -19,7 +19,7 @@ from rest_framework_jwt.views import obtain_jwt_token
 from rest_framework_jwt.views import refresh_jwt_token
 from rest_framework_jwt.views import verify_jwt_token
 
-from accounts.serializers import MyTokenObtainSerializer
+
  
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
@@ -29,7 +29,7 @@ from rest_framework_simplejwt.views import (
 
 urlpatterns = [
     path('api/accounts/' , include('accounts.urls')),
-    path('api/token/', TokenObtainPairView.as_view(serializer_class=MyTokenObtainSerializer), name='token_obtain_pair'),
+    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', refresh_jwt_token, name='token_refresh'),
     path('api/token/verify/', verify_jwt_token, name='token_verify'),
     path('admin/', admin.site.urls),
