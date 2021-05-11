@@ -14,12 +14,16 @@ from .thread import *
 
 
 class CustomUser(AbstractUser):
-    
+    username = None
+    email = models.EmailField( unique=True)
+
     is_verified = models.BooleanField(default=False)
     email_verification_token = models.CharField(max_length=200 , null=True, blank=True)
     forget_password_token = models.CharField(max_length=200 ,null=True, blank=True)
     
-
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = []
+    
     def name(self):
         return self.first_name + ' ' + self.last_name
 
