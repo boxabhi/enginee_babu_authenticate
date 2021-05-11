@@ -4,11 +4,11 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 import uuid
-
+from .manager import *
 from .thread import *
 
-# class User(AbstractUser):
 
+# class User(AbstractUser):
 #     def name(self):
 #         return self.first_name + ' ' + self.last_name
 
@@ -24,6 +24,7 @@ class CustomUser(AbstractUser):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
     
+    objects = UserManager()
     def name(self):
         return self.first_name + ' ' + self.last_name
 
