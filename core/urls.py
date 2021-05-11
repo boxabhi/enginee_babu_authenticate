@@ -19,11 +19,19 @@ from rest_framework_jwt.views import obtain_jwt_token
 from rest_framework_jwt.views import refresh_jwt_token
 from rest_framework_jwt.views import verify_jwt_token
 
+from accounts.serializers import MyTokenObtainSerializer
+ 
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
+
 
 urlpatterns = [
     path('api/accounts/' , include('accounts.urls')),
-    path('api/token/', obtain_jwt_token, name='token_obtain_pair'),
+    path('api/token/', TokenObtainPairView.as_view(serializer_class=MyTokenObtainSerializer), name='token_obtain_pair'),
     path('api/token/refresh/', refresh_jwt_token, name='token_refresh'),
     path('api/token/verify/', verify_jwt_token, name='token_verify'),
     path('admin/', admin.site.urls),
+    path('dj-rest-auth/', include('dj_rest_auth.urls'))
 ]

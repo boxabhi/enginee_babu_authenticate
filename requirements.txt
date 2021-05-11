@@ -1,6 +1,7 @@
 asgiref==3.3.4
 cffi==1.14.5
 cryptography==3.4.7
+dj-rest-auth==2.1.4
 Django==3.2.2
 djangorestframework==3.12.4
 djangorestframework-simplejwt==4.4.0

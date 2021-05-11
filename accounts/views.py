@@ -17,6 +17,12 @@ from rest_framework.mixins import CreateModelMixin , UpdateModelMixin
 from rest_framework.generics import GenericAPIView
 
 
+
+from rest_framework_simplejwt.views import TokenObtainPairView
+
+class EmailTokenObtainPairView(TokenObtainPairView):
+    serializer_class = CustomTokenObtainPairSerializer
+
 class RegisterView(generics.GenericAPIView , CreateModelMixin):
     queryset = User.objects.all()
     serializer_class = UserSerializer

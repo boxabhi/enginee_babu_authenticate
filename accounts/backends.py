@@ -4,18 +4,15 @@ from django.db.models import Q
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.models import User
 
-User = get_user_model()
+
 
 
 class EmailBackend(ModelBackend):
     def authenticate(self, request, email=None, password=None, **kwargs):
         username = email
+        User = get_user_model()
         try:
-            username = (kwargs.get('username'))
-            # user_obj = authenticate(email = username , password = password)
-            # print(user_obj)
-            # login(request , user_obj)
-            user = User.objects.get(Q(email__iexact=username))
+            user = User.objects.get(Q(username__iexact=username) | Q(email__iexact=username))
             print(password)
             login(request , user)
         except Exception as e:
