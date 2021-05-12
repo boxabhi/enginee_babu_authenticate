@@ -19,6 +19,8 @@ from rest_framework import status
 from .models import ForgetPassword
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.decorators import action
+from base_rest.viewsets import BaseAPIViewSet
+
 from django.contrib.auth import get_user_model
 User = get_user_model()
 
@@ -27,7 +29,7 @@ from .mixins import AccountMixin
 
 ''' ModelViewSet for registering user '''
 
-class AccountViewSet(viewsets.ModelViewSet , AccountMixin):
+class AccountViewSet(BaseAPIViewSet , AccountMixin):
     queryset = User.objects.all()
     model_class = User
     serializer_class = UserSerializer
