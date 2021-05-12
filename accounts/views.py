@@ -9,11 +9,10 @@ from rest_framework import generics
 from rest_framework.mixins import CreateModelMixin 
 from rest_framework.generics import GenericAPIView
 
-from .serializers import (  EmailSerializer,
+from .serializers import ( 
                             PasswordSerializer,
                             UserSerializer , ForgetPasswordSerializer)
 from django.contrib.auth import get_user_model
-from django.contrib.auth import login
 from rest_framework import viewsets
 from django.contrib.auth.hashers import check_password
 from rest_framework import status

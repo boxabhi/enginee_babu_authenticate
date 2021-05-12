@@ -87,6 +87,7 @@ def send_email_token(sender, instance, created, **kwargs):
             instance.email_verification_token = email_verification_token
             ''' EXCEUTING THREAD TO SEND EMAIL '''
             SendAccountActivationEmail(instance.email , email_verification_token).start()
+
     except Exception as e:
         print(e)
         
@@ -95,6 +96,8 @@ def send_email_token(sender, instance, created, **kwargs):
     try:
         if created:
             ''' EXCEUTING THREAD TO SEND EMAIL '''
+
             SendForgetPasswordEmail(instance.user.email , instance.forget_password_token).start()
+
     except Exception as e:
         print(e)
