@@ -12,7 +12,6 @@ import datetime
 
 
 
-
 class User(AbstractUser):
     username = None
     email = models.EmailField( unique=True)
