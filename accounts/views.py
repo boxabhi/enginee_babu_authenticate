@@ -131,3 +131,4 @@ class RegisterView(generics.GenericAPIView , CreateModelMixin):
     lookup_field = 'email' 
     def post(self,request , *args, **kwargs):
         return self.create(request,*args ,**kwargs)
+    
