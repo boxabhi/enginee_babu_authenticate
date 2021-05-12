@@ -14,11 +14,6 @@ class EmailBackend(ModelBackend):
         try:
             print(kwargs)
             email = kwargs.get('username')
-
-
-            print(email)
-
-
             user = User.objects.get(Q(email__iexact=email))
             print(password)
             login(request , user)

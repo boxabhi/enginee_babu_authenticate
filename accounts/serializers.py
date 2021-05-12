@@ -14,6 +14,7 @@ class EmailSerializer(serializers.Serializer):
 
 class PasswordSerializer(serializers.Serializer):
     password = serializers.CharField()
+    token = serializers.CharField()
     
     
 
@@ -28,12 +29,15 @@ class UserSerializer(serializers.ModelSerializer):
     email = serializers.EmailField(
         validators=[UniqueValidator(queryset=User.objects.all())]
     )
+    
+    
     class Meta:
         model = User
         fields = '__all__'
         
     
     def create(self , validated_data):
+        print(validated_data)
         user = User.objects.create(email = validated_data['email'])
         user.set_password(validated_data['password'])
         user.save()
